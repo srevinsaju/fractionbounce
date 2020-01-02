@@ -173,7 +173,7 @@ class FractionBounceActivity(SugarCompatibleActivity):
     def close(self, **kwargs):
         self._bounce_window.pause()
         aplay.close()
-        activity.Activity.close(self, **kwargs)
+        SugarCompatibleActivity.close(self, **kwargs)
 
     def _configure_cb(self, event):
         if Gdk.Screen.width() < 1024:
