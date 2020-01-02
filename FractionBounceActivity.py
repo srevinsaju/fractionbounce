@@ -21,7 +21,6 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 
 from sugar3 import profile
-from sugar3.activity import activity
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
 from sugar3.graphics.toolbarbox import ToolbarBox
@@ -30,6 +29,8 @@ from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics.radiotoolbutton import RadioToolButton
 from sugar3.graphics.alert import NotifyAlert
 from sugar3.graphics import style
+
+from sugarapp.widgets import SugarCompatibleActivity
 
 from collabwrapper import CollabWrapper
 
@@ -58,7 +59,7 @@ BGDICT = {'grass': [_('grass'), 'grass_background.png'],
           'custom': [_('user defined'), None]}
 
 
-class FractionBounceActivity(activity.Activity):
+class FractionBounceActivity(SugarCompatibleActivity):
 
     def __init__(self, handle):
         ''' Initiate activity. '''
