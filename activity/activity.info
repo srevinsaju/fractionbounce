@@ -8,6 +8,7 @@ bundle_id = org.sugarlabs.FractionBounce
 exec = sugar-activity3 FractionBounceActivity.FractionBounceActivity
 icon = activity-fractionbounce
 show_launcher = yes
+tags = Education
 summary = interactive fraction game
 category = maths game
 repository = https://github.com/sugarlabs/fractionbounce
