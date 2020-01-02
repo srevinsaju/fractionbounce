@@ -89,7 +89,7 @@ class FractionBounceActivity(SugarCompatibleActivity):
         self._toolbar_was_expanded = False
 
         # Initialize the canvas
-        self._bounce_window = Bounce(canvas, activity.get_bundle_path(), self)
+        self._bounce_window = Bounce(canvas, os.environ['SUGAR_BUNDLE_PATH'], self)
 
         Gdk.Screen.get_default().connect('size-changed', self._configure_cb)
 
@@ -426,7 +426,7 @@ class FractionBounceActivity(SugarCompatibleActivity):
             chooser(self, 'Image', self._new_ball_from_journal)
         else:
             self._bounce_window.ball.new_ball(os.path.join(
-                activity.get_bundle_path(), 'images', ball + '.svg'))
+                os.environ['SUGAR_BUNDLE_PATH'], 'images', ball + '.svg'))
             self._bounce_window.set_background(BGDICT[BALLDICT[ball][1]][1])
         self._current_ball = ball
 
@@ -438,7 +438,7 @@ class FractionBounceActivity(SugarCompatibleActivity):
         if self._current_ball == 'custom':  # TODO: Reload custom ball
             self._current_ball = 'soccerball'
         self._bounce_window.ball.new_ball(os.path.join(
-            activity.get_bundle_path(), 'images', self._current_ball + '.svg'))
+            os.environ['SUGAR_BUNDLE_PATH'], 'images', self._current_ball + '.svg'))
 
     def _new_ball_from_journal(self, dsobject):
         ''' Load an image from the Journal. '''
