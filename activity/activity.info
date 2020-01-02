@@ -1,11 +1,17 @@
 [Activity]
 name = FractionBounce
 activity_version = 27
+release_date = 2019-10-22
+metadata_license = CC0-1.0
 license = GPLv3
-bundle_id = org.sugarlabs.FractionBounceActivity
+bundle_id = org.sugarlabs.FractionBounce
 exec = sugar-activity3 FractionBounceActivity.FractionBounceActivity
 icon = activity-fractionbounce
 show_launcher = yes
 summary = interactive fraction game
 category = maths game
 repository = https://github.com/sugarlabs/fractionbounce
+description = FractionBounce is a game that prompts the player to nudge a bouncing ball to land at a point on the bottom of the screen that is an estimate of a given fraction. 
+developer_name = Sugar Labs Community
+update_contact = tch@sugarlabs.org
+screenshots = https://wiki.sugarlabs.org/images/thumb/7/72/FractionBounce.png/800px-FractionBounce.png
