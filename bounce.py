@@ -56,7 +56,7 @@ import subprocess
 from random import uniform
 
 from gi.repository import GLib, Gtk, Gdk, GdkPixbuf
-
+from sugarapp.helpers import PrimaryMonitor
 from svg_utils import (svg_header, svg_footer, svg_rect, svg_str_to_pixbuf,
                        svg_from_file)
 from aplay import aplay
@@ -124,9 +124,9 @@ class Bounce():
 
         self._sprites = Sprites(self._canvas)
 
-        self._width = Gdk.Screen.width()
-        self._height = Gdk.Screen.height() - GRID_CELL_SIZE
-        self._scale = Gdk.Screen.height() / 900.0
+        self._width = PrimaryMonitor.width()
+        self._height = PrimaryMonitor.height() - GRID_CELL_SIZE
+        self._scale = PrimaryMonitor.height() / 900.0
 
         self._step_sid = None  # repeating timeout between steps of ball move
         self._bounce_sid = None  # one-off timeout between bounces
@@ -184,9 +184,9 @@ class Bounce():
         return os.path.exists(ACCELEROMETER_DEVICE) and _is_tablet_mode()
 
     def configure_cb(self, event):
-        self._width = Gdk.Screen.width()
-        self._height = Gdk.Screen.height() - GRID_CELL_SIZE
-        self._scale = Gdk.Screen.height() / 900.0
+        self._width = PrimaryMonitor.width()
+        self._height = PrimaryMonitor.height() - GRID_CELL_SIZE
+        self._scale = PrimaryMonitor.height() / 900.0
 
         # We need to resize the backgrounds
         width, height = self._calc_background_size()
@@ -199,7 +199,7 @@ class Bounce():
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
                     os.path.join(self._path, 'images', bg),
                     width, height)
-            if Gdk.Screen.height() > Gdk.Screen.width():
+            if PrimaryMonitor.height() > PrimaryMonitor.width():
                 pixbuf = self._crop_to_portrait(pixbuf)
 
             self._backgrounds[bg] = pixbuf
@@ -250,7 +250,7 @@ class Bounce():
         pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
             os.path.join(path, 'images', 'grass_background.png'),
             width, height)
-        if Gdk.Screen.height() > Gdk.Screen.width():
+        if PrimaryMonitor.height() > PrimaryMonitor.width():
             pixbuf = self._crop_to_portrait(pixbuf)
 
         self._backgrounds['grass_background.png'] = pixbuf
@@ -261,19 +261,19 @@ class Bounce():
         self._current_bg = 'grass_background.png'
 
     def _crop_to_portrait(self, pixbuf):
-        tmp = GdkPixbuf.Pixbuf.new(0, True, 8, Gdk.Screen.width(),
-                                   Gdk.Screen.height())
-        x = int(Gdk.Screen.height() // 3)
-        pixbuf.copy_area(x, 0, Gdk.Screen.width(), Gdk.Screen.height(),
+        tmp = GdkPixbuf.Pixbuf.new(0, True, 8, PrimaryMonitor.width(),
+                                   PrimaryMonitor.height())
+        x = int(PrimaryMonitor.height() // 3)
+        pixbuf.copy_area(x, 0, PrimaryMonitor.width(), PrimaryMonitor.height(),
                          tmp, 0, 0)
         return tmp
 
     def _calc_background_size(self):
-        if Gdk.Screen.height() > Gdk.Screen.width():
-            height = Gdk.Screen.height()
+        if PrimaryMonitor.height() > PrimaryMonitor.width():
+            height = PrimaryMonitor.height()
             return int(4 * height // 3), height
         else:
-            width = Gdk.Screen.width()
+            width = PrimaryMonitor.width()
             return width, int(3 * width // 4)
 
     def new_background_from_image(self, path, dsobject=None):
@@ -283,7 +283,7 @@ class Bounce():
         pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
             path, width, height)
 
-        if Gdk.Screen.height() > Gdk.Screen.width():
+        if PrimaryMonitor.height() > PrimaryMonitor.width():
             pixbuf = self._crop_to_portrait(pixbuf)
 
         self._backgrounds['custom'] = pixbuf
@@ -296,7 +296,7 @@ class Bounce():
             width, height = self._calc_background_size()
             pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
                 os.path.join(self._path, 'images', name), width, height)
-            if Gdk.Screen.height() > Gdk.Screen.width():
+            if PrimaryMonitor.height() > PrimaryMonitor.width():
                 pixbuf = self._crop_to_portrait(pixbuf)
             self._backgrounds[name] = pixbuf
         self._background.set_image(self._backgrounds[name])
@@ -576,7 +576,7 @@ class Bounce():
         if self.mode == 'sectors':
             self.ball.new_ball_from_fraction(self._fraction)
 
-        if not Gdk.Screen.width() < 1024:
+        if not PrimaryMonitor.width() < 1024:
             self._activity.reset_label(
                 _('Bounce the ball to a position '
                   '%(fraction)s of the way from the left side of the bar.')

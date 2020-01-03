@@ -30,7 +30,7 @@ from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics.radiotoolbutton import RadioToolButton
 from sugar3.graphics.alert import NotifyAlert
 from sugar3.graphics import style
-
+from sugarapp.helpers import PrimaryMonitor
 from collabwrapper import CollabWrapper
 
 from gettext import gettext as _
@@ -175,7 +175,7 @@ class FractionBounceActivity(activity.Activity):
         activity.Activity.close(self, **kwargs)
 
     def _configure_cb(self, event):
-        if Gdk.Screen.width() < 1024:
+        if PrimaryMonitor.width() < 1024:
             self._label.set_size_request(275, -1)
             self._label.set_label('')
             self._separator.set_expand(False)
@@ -281,7 +281,7 @@ class FractionBounceActivity(activity.Activity):
 
         self._label = Gtk.Label(_("Click the ball to start."))
         self._label.set_line_wrap(True)
-        if Gdk.Screen.width() < 1024:
+        if PrimaryMonitor.width() < 1024:
             self._label.set_size_request(275, -1)
         else:
             self._label.set_size_request(500, -1)
@@ -408,8 +408,8 @@ class FractionBounceActivity(activity.Activity):
 
     def _setup_canvas(self):
         canvas = Gtk.DrawingArea()
-        canvas.set_size_request(Gdk.Screen.width(),
-                                Gdk.Screen.height())
+        canvas.set_size_request(PrimaryMonitor.width(),
+                                PrimaryMonitor.height())
         self.set_canvas(canvas)
         canvas.show()
         return canvas

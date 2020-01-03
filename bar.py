@@ -10,8 +10,7 @@
 # along with this library; if not, write to the Free Software
 # Foundation, 51 Franklin Street, Suite 500 Boston, MA 02110-1335 USA
 
-from gi.repository import Gdk
-
+from sugarapp.helpers import PrimaryMonitor
 from sugar3.graphics import style
 
 from sprites import Sprite
@@ -31,9 +30,9 @@ class Bar():
         self._colors = colors[:]
         self.bars = {}
 
-        self._width = Gdk.Screen.width()
-        self._height = Gdk.Screen.height() - style.GRID_CELL_SIZE
-        self._scale = Gdk.Screen.height() / 900.0
+        self._width = PrimaryMonitor.width()
+        self._height = PrimaryMonitor.height() - style.GRID_CELL_SIZE
+        self._scale = PrimaryMonitor.height() / 900.0
 
         self._ball_size = ball_size
 
@@ -41,9 +40,9 @@ class Bar():
         self._make_wedge_mark()
 
     def resize_all(self):
-        self._width = Gdk.Screen.width()
-        self._height = Gdk.Screen.height() - style.GRID_CELL_SIZE
-        self._scale = Gdk.Screen.height() / 900.0
+        self._width = PrimaryMonitor.width()
+        self._height = PrimaryMonitor.height() - style.GRID_CELL_SIZE
+        self._scale = PrimaryMonitor.height() / 900.0
 
         for bar in list(self.bars.keys()):
             self.bars[bar].hide()
