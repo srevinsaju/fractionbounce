@@ -21,6 +21,7 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 
 from sugar3 import profile
+from sugar3.activity import activity
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
 from sugar3.graphics.toolbarbox import ToolbarBox
