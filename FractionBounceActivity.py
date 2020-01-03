@@ -417,12 +417,14 @@ class FractionBounceActivity(SugarCompatibleActivity):
         return canvas
 
     def _load_bg_cb(self, widget, event, bg):
+        self._bg_palette.popdown(immediate=True)
         if bg == 'custom':
             chooser(self, 'Image', self._new_background_from_journal)
         else:
             self._bounce_window.set_background(BGDICT[bg][1])
 
     def _load_ball_cb(self, widget, event, ball):
+        self._ball_palette.popdown(immediate=True)
         if ball == 'custom':
             chooser(self, 'Image', self._new_ball_from_journal)
         else:
