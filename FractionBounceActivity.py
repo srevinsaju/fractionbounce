@@ -443,7 +443,7 @@ class FractionBounceActivity(SugarCompatibleActivity):
     def _new_ball_from_journal(self, dsobject):
         ''' Load an image from the Journal. '''
         self._bounce_window.ball.new_ball_from_image(
-            dsobject.file_path,
+            dsobject,
             os.path.join(activity.get_activity_root(), 'tmp', 'custom.png'))
 
     def _new_background_from_journal(self, dsobject):

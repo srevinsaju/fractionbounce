@@ -15,29 +15,15 @@
 
 from gi.repository import Gtk
 
-from sugar3.graphics.objectchooser import ObjectChooser
-try:
-    from sugar3.graphics.objectchooser import FILTER_TYPE_GENERIC_MIME
-except:
-    FILTER_TYPE_GENERIC_MIME = 'generic_mime'
-
+from sugarapp.widgets import DesktopOpenChooser
 
 def chooser(parent_window, filter, action):
     """ Choose an object from the datastore and take some action """
     chooser = None
-    try:
-        chooser = ObjectChooser(parent=parent_window, what_filter=filter,
-                                filter_type=FILTER_TYPE_GENERIC_MIME,
-                                show_preview=True)
-    except:
-        chooser = ObjectChooser(parent=parent_window, what_filter=filter)
-    if chooser is not None:
-        try:
-            result = chooser.run()
-            if result == Gtk.ResponseType.ACCEPT:
-                dsobject = chooser.get_selected_object()
-                action(dsobject)
-                dsobject.destroy()
-        finally:
-            chooser.destroy()
-            del chooser
+    chooser = None
+    chooser = DesktopOpenChooser(self)
+    chooser.add_filter('.png', 'Portable Network Graphics (.png)')
+    self.chooser.add_filter('.jpg', 'JPG Images (.jpg)')
+    self.chooser.add_filter('.jpeg', 'JPG Images (.jpeg)')
+    filepath = self.chooser.get_filename()
+    action(filepath)

@@ -192,7 +192,7 @@ class Bounce():
         width, height = self._calc_background_size()
         for bg in list(self._backgrounds.keys()):
             if bg == 'custom':
-                path = self._custom_dsobject.file_path
+                path = self._custom_dsobject
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
                     path, width, height)
             else:
@@ -278,7 +278,7 @@ class Bounce():
 
     def new_background_from_image(self, path, dsobject=None):
         if path is None:
-            path = dsobject.file_path
+            path = dsobject
         width, height = self._calc_background_size()
         pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
             path, width, height)
