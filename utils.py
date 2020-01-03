@@ -25,4 +25,5 @@ def chooser(parent_window, filter, action):
     chooser.add_filter('.jpg', 'JPG Images (.jpg)')
     chooser.add_filter('.jpeg', 'JPG Images (.jpeg)')
     filepath = chooser.get_filename()
-    action(filepath)
+    if filepath is not None:
+        action(filepath)
