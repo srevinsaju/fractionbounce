@@ -20,10 +20,9 @@ from sugarapp.widgets import DesktopOpenChooser
 def chooser(parent_window, filter, action):
     """ Choose an object from the datastore and take some action """
     chooser = None
-    chooser = None
     chooser = DesktopOpenChooser(parent_window)
     chooser.add_filter('.png', 'Portable Network Graphics (.png)')
-    self.chooser.add_filter('.jpg', 'JPG Images (.jpg)')
-    self.chooser.add_filter('.jpeg', 'JPG Images (.jpeg)')
-    filepath = self.chooser.get_filename()
+    chooser.add_filter('.jpg', 'JPG Images (.jpg)')
+    chooser.add_filter('.jpeg', 'JPG Images (.jpeg)')
+    filepath = chooser.get_filename()
     action(filepath)
